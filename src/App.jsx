@@ -1,4 +1,5 @@
-// App.jsx ✅ FIXED
+import "./index.css"; 
+
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -6,7 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
-import "./index.css"; 
+import HeroSection from "./components/HeroSection";
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />  
         </Route>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/" element={<h1>Welcome to MyApp</h1>} />
+        <Route path="/" element={<HeroSection />} />
       </Routes>
     </>
   );
