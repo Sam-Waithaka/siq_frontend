@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -50,6 +50,21 @@ const Register = () => {
           className="block w-full p-2 border rounded mb-2"
         />
         {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+
+
+        <input
+            type="password"
+            placeholder="Confirm Password"
+            {...register("password2", {
+              required: "Confirm password is required",
+              validate: (value) =>
+                value === watch("password") || "Passwords do not match",
+            })}
+            className="block w-full p-2 border rounded mb-2"
+      />
+      {errors.password2 && <p className="text-red-500 text-sm">{errors.password2.message}</p>}
+
+
 
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
           Register
