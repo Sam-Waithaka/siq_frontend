@@ -1,26 +1,69 @@
 import { Link } from "react-router-dom";
-import LogoutButton from "./LogoutButton"; 
+import { useState } from "react";
+import { Home, User, LogOut, Menu } from "lucide-react";
+import LogoutButton from "./LogoutButton";
 
 const Navbar = () => {
-  const isAuthenticated = !!localStorage.getItem("access_token"); // ✅ Check auth status
+  const isAuthenticated = !!localStorage.getItem("access_token");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-800 text-white p-4 flex justify-between items-center">
-      <h1 className="text-xl font-bold">MyApp</h1>
-      <div>
-        <Link to="/" className="px-4 hover:text-gray-300">Home</Link>
-        {isAuthenticated ? (
-          <>
-            <Link to="/profile" className="px-4 hover:text-gray-300">Profile</Link>
-            <LogoutButton /> {/* ✅ Show Logout if logged in */}
-          </>
-        ) : (
-          <>
-            <Link to="/login" className="px-4 hover:text-gray-300">Login</Link>
-            <Link to="/register" className="px-4 hover:text-gray-300">Register</Link>
-          </>
-        )}
+    <nav className="bg-white shadow-md sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-bold text-gray-800">
+           User Management
+          </Link>
+          
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-6">
+            <Link to="/" className="text-gray-700 hover:text-blue-600 flex items-center">
+              <Home className="mr-2" size={20} /> Home
+            </Link>
+            {isAuthenticated && (
+              <Link to="/profile" className="text-gray-700 hover:text-blue-600 flex items-center">
+                <User className="mr-2" size={20} /> Profile
+              </Link>
+            )}
+          </div>
+          
+          {/* Auth Controls */}
+          <div className="hidden md:flex items-center space-x-4">
+            {isAuthenticated ? (
+              <LogoutButton />
+            ) : (
+              <>
+                <Link to="/login" className="text-gray-700 hover:text-blue-600">Login</Link>
+                <Link to="/register" className="text-white bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700">
+                  Register
+                </Link>
+              </>
+            )}
+          </div>
+          
+          {/* Mobile Menu Button */}
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-gray-700">
+            <Menu size={24} />
+          </button>
+        </div>
       </div>
+      
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-white shadow-md p-4">
+          <Link to="/" className="block text-gray-700 py-2">Home</Link>
+          {isAuthenticated && <Link to="/profile" className="block text-gray-700 py-2">Profile</Link>}
+          {isAuthenticated ? (
+            <LogoutButton />
+          ) : (
+            <>
+              <Link to="/login" className="block text-gray-700 py-2">Login</Link>
+              <Link to="/register" className="block text-gray-700 py-2">Register</Link>
+            </>
+          )}
+        </div>
+      )}
     </nav>
   );
 };
