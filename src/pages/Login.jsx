@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../services/axiosInstance"; // Import axiosInstance
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,20 +10,20 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(null); // Clear previous errors
+    setError(null); 
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+      const response = await axiosInstance.post("/login/", {
         email,
         password,
       });
 
-      // Store token in localStorage
+      // Store tokens
       localStorage.setItem("access_token", response.data.access);
       localStorage.setItem("refresh_token", response.data.refresh);
 
       console.log("Login Successful:", response.data);
-      navigate("/profile"); // Redirect to Profile page
+      navigate("/profile");
     } catch (err) {
       setError("Invalid email or password");
       console.error("Login Failed:", err.response?.data);
