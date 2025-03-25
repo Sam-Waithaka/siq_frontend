@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const LogoutButton = () => {
+const LogoutButton = ({ onLogout }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -9,6 +9,9 @@ const LogoutButton = () => {
     localStorage.removeItem("refresh_token");
 
     console.log("User logged out");
+
+    // ✅ Trigger Navbar update
+    if (onLogout) onLogout();
 
     // ✅ Redirect to login page
     navigate("/login");

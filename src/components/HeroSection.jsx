@@ -65,8 +65,8 @@ export default function HeroSection() {
                   asChild 
                   className="px-6 py-3 text-base font-semibold"
                 >
-                  <Link to="/dashboard">
-                    Go to Dashboard
+                  <Link to="/profile">
+                    View Profile
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>

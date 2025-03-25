@@ -20,7 +20,7 @@ const Login = () => {
       localStorage.setItem("refresh_token", response.data.refresh);
 
       console.log("Login Successful:", response.data);
-      navigate("/dashboard");
+      navigate("/");
     } catch (err) {
       setError("Invalid email or password");
       console.error("Login Failed:", err.response?.data);

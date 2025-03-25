@@ -1,5 +1,6 @@
 import React from 'react';
 import { LogOut, Home, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const handleLogout = () => {
@@ -10,8 +11,6 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      
-
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-xl mx-auto bg-white shadow-md rounded-lg p-8 space-y-6">
@@ -20,6 +19,18 @@ const Dashboard = () => {
             <p className="text-gray-600">Only authenticated users can see this page.</p>
           </div>
 
+          {/* Profile Link */}
+          <div className="text-center">
+            <Link
+              to="/profile"
+              className="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out flex items-center justify-center"
+            >
+              <User className="mr-2" size={20} />
+              Go to Profile
+            </Link>
+          </div>
+
+          {/* Logout Button */}
           <div className="text-center">
             <button 
               onClick={handleLogout}
