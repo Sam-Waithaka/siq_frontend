@@ -1,0 +1,9 @@
+services:
+  frontend:
+    image: siq_frontend
+    build: .
+    ports:
+      - "5173:80" # Map port 80 inside the container to 5173 on the host
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
