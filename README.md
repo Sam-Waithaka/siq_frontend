@@ -37,8 +37,8 @@ This is a full-featured User Management Application built with React, Vite, and 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/user-management-app.git
-cd user-management-app
+git clone hhttps://github.com/Sam-Waithaka/siq_frontend.git
+cd siq_frontend
 ```
 
 ### 2. Install Dependencies
@@ -65,35 +65,41 @@ The application will be available at `http://localhost:5173`
 
 ## 🐳 Docker Deployment
 
-### Building the Docker Image
+### Building the Docker Image and running with Docker compose
 
 ```bash
-docker build -t user-management-frontend .
+docker-compose up --build -d
 ```
 
-### Running with Docker Compose
-
-```bash
-docker-compose up -d
-```
 
 The application will be available at `http://localhost:5173`
 
 ## 📂 Project Structure
 
 ```
-src/
-├── components/
-│   ├── Navbar.jsx
-│   ├── LogoutButton.jsx
-│   └── ui/
-├── pages/
-│   ├── Login.jsx
-│   ├── Register.jsx
-│   ├── Dashboard.jsx
-│   └── Profile.jsx
-├── App.jsx
-└── main.jsx
+siq_frontend
+├── public
+├── src
+│   ├── assets
+│   ├── components
+│   ├── pages
+│   │   ├── Dashboard.jsx
+│   │   ├── Login.jsx
+│   │   ├── Logout.jsx
+│   │   ├── Profile.jsx
+│   │   └── Register.jsx
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .dockerignore
+├── .env
+├── Dockerfile
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+└── vite.config.js
 ```
 
 ## 🔒 Authentication Flow
@@ -110,14 +116,3 @@ src/
 - Update API endpoints in individual components
 - Adjust styling and components as needed
 
-## 📄 License
-
-[Your License - e.g., MIT]
-
-## 👥 Contributors
-
-[Your Name]
-
-## 🐛 Issues
-
-Report issues at: [Your GitHub Repository Issues Page]
